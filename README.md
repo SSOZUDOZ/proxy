@@ -12,13 +12,13 @@
 
 | Локация / Тип | Статус | Ссылка для подключения |
 | :--- | :---: | :--- |
-| 🇩🇪 **Германия (Основной)** | 🟢 Работает | [👉 Подключить в 1 клик](https://t.me/proxy?server=de.howfreeyouare.ru&port=993&secret=ee9cf83c412c8e51934d52fbbd275bc43d79612e7275) |
-| 🌍 **Европа (Быстрый)** | 🟢 Работает | [👉 Подключить в 1 клик](https://t.me/proxy?server=howfreeyouare.ru&port=993&secret=ee3ece194e0dd8d4ab38c0b810b3be97c479612e7275) |
+| 🌍 **howfreeyouare.ru:993 (Основной)** | 🟢 Работает | [👉 Подключить в 1 клик](https://t.me/proxy?server=howfreeyouare.ru&port=993&secret=ee3ece194e0dd8d4ab38c0b810b3be97c479612e7275) |
+| 🇩🇪 **Германия (Запасной)** | 🟢 Работает | [👉 Подключить в 1 клик](https://t.me/proxy?server=de.howfreeyouare.ru&port=993&secret=ee9cf83c412c8e51934d52fbbd275bc43d79612e7275) |
 | ⚡️ **Резервный узел** | 🟢 Работает | [👉 Подключить в 1 клик](https://t.me/proxy?server=howfreeyouare.ru&port=8888&secret=ee019586289cf34b85aafe52d3e36bf9c779612e7275) |
 
 > **💡 Как подключить вручную:**
 > Если ссылки выше не открываются в браузере, скопируйте эту ссылку и отправьте её в любой чат (например, в «Избранное») внутри самого Telegram, а затем нажмите на неё:
-> `https://t.me/proxy?server=de.howfreeyouare.ru&port=993&secret=ee9cf83c412c8e51934d52fbbd275bc43d79612e7275`
+> `https://t.me/proxy?server=howfreeyouare.ru&port=993&secret=ee3ece194e0dd8d4ab38c0b810b3be97c479612e7275`
 
 ---
 
