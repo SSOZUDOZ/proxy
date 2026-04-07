@@ -86,6 +86,21 @@
   .btn.ghost{background:#0e1a31;color:#dbe6ff;border-color:var(--border)}
   .btn.ghost:hover{background:#142143}
   .btn svg{width:16px;height:16px;flex:0 0 auto}
+  .btn.big{padding:14px 20px;font-size:15px;border-radius:14px}
+  .all-card{
+    display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;
+    background:
+      radial-gradient(600px 200px at 100% 0%, rgba(42,171,238,.28), transparent 60%),
+      linear-gradient(180deg,#13213e,#0f1a33);
+    border:1px solid #29456f;border-radius:18px;padding:18px 20px;
+    box-shadow:var(--shadow);margin-bottom:16px;
+  }
+  .all-title{font-weight:700;font-size:17px}
+  .all-sub{color:#9fb1d4;font-size:13px;margin-top:4px;max-width:460px}
+  @media (max-width:520px){
+    .all-card{align-items:stretch}
+    .all-card .btn{width:100%;justify-content:center}
+  }
   .copy{
     background:#0e1a31;border:1px solid var(--border);color:#9fb1d4;
     padding:9px 11px;border-radius:10px;font-size:12px;
@@ -152,6 +167,17 @@
     <p class="lead">
       Если у вас заблокирован Telegram, не грузятся медиа или «кружочки» — просто нажмите кнопку ниже. Рекомендуем добавить <b>все три сервера</b>: Telegram сам выберет самый быстрый и переключится на резервный при проблемах.
     </p>
+
+    <div class="all-card">
+      <div>
+        <div class="all-title">Добавить сразу все прокси</div>
+        <div class="all-sub">Откроется 3 окна подтверждения в Telegram — просто нажмите «Включить» в каждом.</div>
+      </div>
+      <button class="btn primary big" id="addAll">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9.04 15.4l-.36 5.07c.52 0 .74-.22 1.01-.49l2.43-2.33 5.03 3.68c.92.51 1.57.24 1.82-.85L22.93 3.9c.32-1.37-.49-1.9-1.39-1.57L1.46 10.06c-1.33.52-1.31 1.26-.23 1.6l4.97 1.55 11.53-7.27c.54-.35 1.04-.15.63.2z"/></svg>
+        Добавить все 3 прокси
+      </button>
+    </div>
 
     <div class="grid" id="servers"></div>
 
@@ -253,6 +279,32 @@
     }catch{
       showToast("Не удалось скопировать");
     }
+  });
+
+  // "Add all" button: sequentially open tg:// for every server
+  const addAllBtn = document.getElementById("addAll");
+  addAllBtn.addEventListener("click", async () => {
+    addAllBtn.disabled = true;
+    const original = addAllBtn.innerHTML;
+    for (let i = 0; i < servers.length; i++) {
+      addAllBtn.innerHTML = `Открываю ${i + 1} из ${servers.length}…`;
+      // Use hidden iframe for non-first triggers to avoid browser blocking
+      // multiple top-level navigations; first one via location for reliability.
+      if (i === 0) {
+        window.location.href = tgLink(servers[i]);
+      } else {
+        const f = document.createElement("iframe");
+        f.style.display = "none";
+        f.src = tgLink(servers[i]);
+        document.body.appendChild(f);
+        setTimeout(() => f.remove(), 4000);
+      }
+      // Delay so Telegram успевает показать диалог подтверждения для каждого
+      await new Promise((r) => setTimeout(r, 1800));
+    }
+    addAllBtn.innerHTML = original;
+    addAllBtn.disabled = false;
+    showToast("Подтвердите каждый прокси в Telegram");
   });
 
   // Smart fallback: if tg:// didn't launch (desktop without Telegram), offer t.me
