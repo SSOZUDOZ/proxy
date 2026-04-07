@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="dark light">
+<title>Бесплатные прокси для Telegram — EverydayVPN</title>
+<meta name="description" content="Рабочие MTProto-прокси для Telegram. Подключение в один клик с ПК и телефона.">
+<meta property="og:title" content="Бесплатные прокси для Telegram — EverydayVPN">
+<meta property="og:description" content="Рабочие MTProto-прокси. Подключение в один клик с ПК и телефона.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%232AABEE'/%3E%3Cpath d='M14 31l34-13-6 34-11-5-6 6-2-10z' fill='%23fff'/%3E%3C/svg%3E">
+<style>
+  :root{
+    --bg:#0b1220;
+    --bg2:#0f172a;
+    --card:#111a2e;
+    --card2:#16223c;
+    --border:#1f2d4d;
+    --text:#e6edf7;
+    --muted:#96a3bd;
+    --brand:#2AABEE;
+    --brand2:#229ed9;
+    --ok:#22c55e;
+    --accent:#7c5cff;
+    --shadow:0 10px 30px rgba(0,0,0,.35);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,"Helvetica Neue",Arial,sans-serif;
+    color:var(--text);
+    background:
+      radial-gradient(1200px 600px at 85% -10%, rgba(42,171,238,.22), transparent 60%),
+      radial-gradient(900px 500px at -10% 10%, rgba(124,92,255,.18), transparent 60%),
+      linear-gradient(180deg,var(--bg),var(--bg2));
+    min-height:100dvh;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+  .wrap{max-width:880px;margin:0 auto;padding:32px 20px 64px}
+  header{display:flex;align-items:center;gap:14px;margin-bottom:8px}
+  .logo{
+    width:44px;height:44px;border-radius:12px;
+    background:linear-gradient(135deg,var(--brand),var(--brand2));
+    display:grid;place-items:center;box-shadow:var(--shadow);
+    flex:0 0 auto;
+  }
+  .logo svg{width:26px;height:26px;fill:#fff}
+  h1{font-size:clamp(22px,4vw,30px);margin:0;line-height:1.2}
+  .sub{color:var(--muted);font-size:14px;margin-top:2px}
+  .badges{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 8px}
+  .badge{
+    font-size:12px;padding:6px 10px;border-radius:999px;
+    background:#0e1a31;border:1px solid var(--border);color:#b8c6e1
+  }
+  .badge.ok{color:#7ef0a8;border-color:#1f4432;background:#0d2318}
+  p.lead{color:#c8d3ea;line-height:1.55;margin:14px 0 22px}
+  .grid{display:grid;gap:14px}
+  .card{
+    background:linear-gradient(180deg,var(--card),var(--card2));
+    border:1px solid var(--border);
+    border-radius:16px;padding:18px;
+    box-shadow:var(--shadow);
+  }
+  .row{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+  .title{display:flex;align-items:center;gap:10px;min-width:0}
+  .flag{font-size:22px;line-height:1}
+  .name{font-weight:600;font-size:16px}
+  .meta{color:var(--muted);font-size:12px;margin-top:2px;word-break:break-all}
+  .status{
+    display:inline-flex;align-items:center;gap:6px;font-size:12px;color:#7ef0a8;
+    background:#0d2318;border:1px solid #1f4432;padding:4px 8px;border-radius:999px
+  }
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 10px #22c55e}
+  .btns{display:flex;gap:8px;flex-wrap:wrap}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:11px 16px;border-radius:12px;text-decoration:none;font-weight:600;font-size:14px;
+    border:1px solid transparent;cursor:pointer;transition:transform .05s ease, filter .2s ease, background .2s;
+    white-space:nowrap;
+  }
+  .btn:active{transform:translateY(1px)}
+  .btn.primary{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff}
+  .btn.primary:hover{filter:brightness(1.08)}
+  .btn.ghost{background:#0e1a31;color:#dbe6ff;border-color:var(--border)}
+  .btn.ghost:hover{background:#142143}
+  .btn svg{width:16px;height:16px;flex:0 0 auto}
+  .copy{
+    background:#0e1a31;border:1px solid var(--border);color:#9fb1d4;
+    padding:9px 11px;border-radius:10px;font-size:12px;
+  }
+  .copy:hover{color:#fff}
+  details{margin-top:10px}
+  details summary{cursor:pointer;color:#9fb1d4;font-size:13px;list-style:none}
+  details summary::-webkit-details-marker{display:none}
+  details[open] summary{color:#c8d3ea}
+  code.url{
+    display:block;margin-top:8px;padding:10px 12px;border-radius:10px;
+    background:#0a1224;border:1px solid var(--border);color:#c9d6f0;
+    font-size:12px;word-break:break-all;user-select:all;
+  }
+  .cta{
+    margin-top:26px;padding:22px;border-radius:18px;
+    background:
+      radial-gradient(600px 200px at 90% 0%, rgba(124,92,255,.25), transparent 60%),
+      linear-gradient(180deg,#15203a,#101932);
+    border:1px solid var(--border);
+  }
+  .cta h2{margin:0 0 8px;font-size:20px}
+  .cta p{color:#c8d3ea;margin:0 0 14px;line-height:1.55}
+  .feat{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin:12px 0 16px}
+  .feat div{background:#0e1a31;border:1px solid var(--border);border-radius:12px;padding:12px;font-size:13px;color:#c8d3ea}
+  .feat b{color:#fff}
+  footer{margin-top:28px;color:var(--muted);font-size:13px;text-align:center}
+  footer a{color:#9fc6ff;text-decoration:none}
+  footer a:hover{text-decoration:underline}
+  .toast{
+    position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);
+    background:#0e1a31;color:#dbe6ff;border:1px solid var(--border);
+    padding:10px 14px;border-radius:12px;font-size:13px;opacity:0;pointer-events:none;
+    transition:opacity .2s, transform .2s;box-shadow:var(--shadow);z-index:50
+  }
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+  @media (max-width:520px){
+    .wrap{padding:20px 14px 48px}
+    .row{align-items:flex-start}
+    .btns{width:100%}
+    .btn{flex:1 1 auto;justify-content:center}
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="logo" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M9.04 15.4l-.36 5.07c.52 0 .74-.22 1.01-.49l2.43-2.33 5.03 3.68c.92.51 1.57.24 1.82-.85L22.93 3.9c.32-1.37-.49-1.9-1.39-1.57L1.46 10.06c-1.33.52-1.31 1.26-.23 1.6l4.97 1.55 11.53-7.27c.54-.35 1.04-.15.63.2z"/></svg>
+      </div>
+      <div>
+        <h1>Бесплатные прокси для Telegram</h1>
+        <div class="sub">от команды EverydayVPN · подключение в 1 клик с ПК и телефона</div>
+      </div>
+    </header>
+
+    <div class="badges">
+      <span class="badge ok">● Online</span>
+      <span class="badge">Бесплатно</span>
+      <span class="badge">Uptime 99.9%</span>
+      <span class="badge">MTProto · обход блокировок</span>
+    </div>
+
+    <p class="lead">
+      Если у вас заблокирован Telegram, не грузятся медиа или «кружочки» — просто нажмите кнопку ниже. Рекомендуем добавить <b>все три сервера</b>: Telegram сам выберет самый быстрый и переключится на резервный при проблемах.
+    </p>
+
+    <div class="grid" id="servers"></div>
+
+    <section class="cta">
+      <h2>🌍 Нужен полноценный интернет без ограничений?</h2>
+      <p>Прокси спасает только мессенджер. Для YouTube в 4K, заблокированных сайтов и Instagram — <b>EverydayVPN</b>.</p>
+      <div class="feat">
+        <div><b>Пробиваем блокировки.</b> VLESS + Reality, даже «белые списки».</div>
+        <div><b>Умная маршрутизация.</b> Банки и Госуслуги работают напрямую.</div>
+        <div><b>Без настроек.</b> Mini App внутри Telegram, 2 тапа.</div>
+        <div><b>От 169 ₽/мес.</b> СБП, крипта, Telegram Stars.</div>
+      </div>
+      <a class="btn primary" href="https://t.me/EverydayVPNNow_bot">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9.04 15.4l-.36 5.07c.52 0 .74-.22 1.01-.49l2.43-2.33 5.03 3.68c.92.51 1.57.24 1.82-.85L22.93 3.9c.32-1.37-.49-1.9-1.39-1.57L1.46 10.06c-1.33.52-1.31 1.26-.23 1.6l4.97 1.55 11.53-7.27c.54-.35 1.04-.15.63.2z"/></svg>
+        Запустить VPN-бота
+      </a>
+    </section>
+
+    <footer>
+      💬 Поддержка 24/7 · <a href="https://t.me/EverydayVPNNow_bot">@EverydayVPNNow_bot</a> · <a href="https://t.me/EverydayVPN_channel">канал EverydayVPN</a>
+    </footer>
+  </div>
+
+  <div class="toast" id="toast">Скопировано</div>
+
+<script>
+  const servers = [
+    {
+      flag: "🇩🇪",
+      name: "Германия (Основной)",
+      server: "de.howfreeyouare.ru",
+      port: 993,
+      secret: "ee9cf83c412c8e51934d52fbbd275bc43d79612e7275"
+    },
+    {
+      flag: "🌍",
+      name: "Европа (Быстрый)",
+      server: "howfreeyouare.ru",
+      port: 993,
+      secret: "ee3ece194e0dd8d4ab38c0b810b3be97c479612e7275"
+    },
+    {
+      flag: "⚡️",
+      name: "Резервный узел",
+      server: "howfreeyouare.ru",
+      port: 8888,
+      secret: "ee019586289cf34b85aafe52d3e36bf9c779612e7275"
+    }
+  ];
+
+  const q = (s) => `server=${encodeURIComponent(s.server)}&port=${s.port}&secret=${s.secret}`;
+  const tgLink = (s) => `tg://proxy?${q(s)}`;
+  const webLink = (s) => `https://t.me/proxy?${q(s)}`;
+
+  const iconTg = `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M9.04 15.4l-.36 5.07c.52 0 .74-.22 1.01-.49l2.43-2.33 5.03 3.68c.92.51 1.57.24 1.82-.85L22.93 3.9c.32-1.37-.49-1.9-1.39-1.57L1.46 10.06c-1.33.52-1.31 1.26-.23 1.6l4.97 1.55 11.53-7.27c.54-.35 1.04-.15.63.2z"/></svg>`;
+  const iconLink = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.07 0l3-3a5 5 0 00-7.07-7.07l-1.5 1.5"/><path d="M14 11a5 5 0 00-7.07 0l-3 3a5 5 0 007.07 7.07l1.5-1.5"/></svg>`;
+  const iconCopy = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>`;
+
+  const container = document.getElementById("servers");
+  container.innerHTML = servers.map((s, i) => `
+    <div class="card">
+      <div class="row">
+        <div class="title">
+          <span class="flag">${s.flag}</span>
+          <div style="min-width:0">
+            <div class="name">${s.name}</div>
+            <div class="meta">${s.server}:${s.port}</div>
+          </div>
+        </div>
+        <span class="status"><span class="dot"></span>Работает</span>
+      </div>
+      <div class="btns" style="margin-top:14px">
+        <a class="btn primary" href="${tgLink(s)}" data-i="${i}">${iconTg} Подключить в приложении</a>
+        <a class="btn ghost" href="${webLink(s)}" target="_blank" rel="noopener">${iconLink} Через t.me</a>
+        <button class="btn copy" data-copy="${webLink(s)}" title="Скопировать ссылку">${iconCopy} Копировать</button>
+      </div>
+      <details>
+        <summary>Не открывается? Скопируйте ссылку вручную</summary>
+        <code class="url">${webLink(s)}</code>
+      </details>
+    </div>
+  `).join("");
+
+  // Copy to clipboard
+  const toast = document.getElementById("toast");
+  let toastT;
+  function showToast(msg){
+    toast.textContent = msg;
+    toast.classList.add("show");
+    clearTimeout(toastT);
+    toastT = setTimeout(()=>toast.classList.remove("show"), 1600);
+  }
+  container.addEventListener("click", async (e) => {
+    const btn = e.target.closest("[data-copy]");
+    if(!btn) return;
+    try{
+      await navigator.clipboard.writeText(btn.dataset.copy);
+      showToast("Ссылка скопирована");
+    }catch{
+      showToast("Не удалось скопировать");
+    }
+  });
+
+  // Smart fallback: if tg:// didn't launch (desktop without Telegram), offer t.me
+  container.addEventListener("click", (e) => {
+    const a = e.target.closest('a.btn.primary[href^="tg://"]');
+    if(!a) return;
+    const i = +a.dataset.i;
+    const s = servers[i];
+    const started = Date.now();
+    // If page is still visible after 1.2s, assume app didn't open
+    setTimeout(() => {
+      if (document.visibilityState === "visible" && Date.now() - started < 2500) {
+        window.open(webLink(s), "_blank", "noopener");
+      }
+    }, 1200);
+  });
+</script>
+</body>
+</html>
