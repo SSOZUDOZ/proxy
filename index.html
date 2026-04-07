@@ -87,6 +87,9 @@
   .btn.ghost:hover{background:#142143}
   .btn svg{width:16px;height:16px;flex:0 0 auto}
   .btn.big{padding:14px 20px;font-size:15px;border-radius:14px}
+  .btn.done{background:linear-gradient(135deg,#22c55e,#16a34a)}
+  @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(42,171,238,.6)}50%{box-shadow:0 0 0 10px rgba(42,171,238,0)}}
+  .btn.pulse{animation:pulse 1.1s ease-out}
   .all-card{
     display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;
     background:
@@ -170,8 +173,8 @@
 
     <div class="all-card">
       <div>
-        <div class="all-title">Добавить сразу все прокси</div>
-        <div class="all-sub">Откроется 3 окна подтверждения в Telegram — просто нажмите «Включить» в каждом.</div>
+        <div class="all-title">Добавить все прокси по шагам</div>
+        <div class="all-sub">Жмите кнопку → в Telegram нажмите «Включить» → вернитесь назад → снова кнопка. И так 3 раза. Надёжно работает и на телефоне, и на ПК.</div>
       </div>
       <button class="btn primary big" id="addAll">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9.04 15.4l-.36 5.07c.52 0 .74-.22 1.01-.49l2.43-2.33 5.03 3.68c.92.51 1.57.24 1.82-.85L22.93 3.9c.32-1.37-.49-1.9-1.39-1.57L1.46 10.06c-1.33.52-1.31 1.26-.23 1.6l4.97 1.55 11.53-7.27c.54-.35 1.04-.15.63.2z"/></svg>
@@ -281,30 +284,51 @@
     }
   });
 
-  // "Add all" button: sequentially open tg:// for every server
+  // "Add all" button: step-by-step flow that works on mobile.
+  // Mobile browsers freeze JS timers when backgrounded, so we can't just loop.
+  // Instead: open first link, then when user returns to the tab (visibilitychange),
+  // re-enable the button so они могут продолжить одним тапом.
   const addAllBtn = document.getElementById("addAll");
-  addAllBtn.addEventListener("click", async () => {
-    addAllBtn.disabled = true;
-    const original = addAllBtn.innerHTML;
-    for (let i = 0; i < servers.length; i++) {
-      addAllBtn.innerHTML = `Открываю ${i + 1} из ${servers.length}…`;
-      // Use hidden iframe for non-first triggers to avoid browser blocking
-      // multiple top-level navigations; first one via location for reliability.
-      if (i === 0) {
-        window.location.href = tgLink(servers[i]);
-      } else {
-        const f = document.createElement("iframe");
-        f.style.display = "none";
-        f.src = tgLink(servers[i]);
-        document.body.appendChild(f);
-        setTimeout(() => f.remove(), 4000);
-      }
-      // Delay so Telegram успевает показать диалог подтверждения для каждого
-      await new Promise((r) => setTimeout(r, 1800));
+  const addAllOriginalHTML = addAllBtn.innerHTML;
+  let queueIndex = -1; // -1 = not started
+
+  function updateAddAllButton() {
+    if (queueIndex === -1) {
+      addAllBtn.innerHTML = addAllOriginalHTML;
+    } else if (queueIndex >= servers.length) {
+      addAllBtn.innerHTML = `✓ Все ${servers.length} прокси добавлены`;
+      addAllBtn.classList.add("done");
+    } else {
+      const n = queueIndex + 1;
+      addAllBtn.innerHTML = `Подключить ${n} из ${servers.length} →`;
     }
-    addAllBtn.innerHTML = original;
-    addAllBtn.disabled = false;
-    showToast("Подтвердите каждый прокси в Telegram");
+  }
+
+  addAllBtn.addEventListener("click", () => {
+    if (queueIndex === -1) queueIndex = 0;
+    if (queueIndex >= servers.length) {
+      // Reset
+      queueIndex = -1;
+      addAllBtn.classList.remove("done");
+      updateAddAllButton();
+      return;
+    }
+    const s = servers[queueIndex];
+    queueIndex++;
+    // Navigate to tg:// — Telegram открывается и показывает диалог подтверждения.
+    window.location.href = tgLink(s);
+    // После возврата в браузер обновим подпись кнопки.
+    setTimeout(updateAddAllButton, 300);
+  });
+
+  // Когда пользователь возвращается из Telegram — подсвечиваем кнопку для след. шага.
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "visible" && queueIndex > 0) {
+      updateAddAllButton();
+      // Короткая анимация, чтобы было заметно
+      addAllBtn.classList.add("pulse");
+      setTimeout(() => addAllBtn.classList.remove("pulse"), 1200);
+    }
   });
 
   // Smart fallback: if tg:// didn't launch (desktop without Telegram), offer t.me
