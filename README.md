@@ -39,3 +39,4 @@
 Если у вас возникли сложности с подключением прокси или VPN, наша команда на связи 24/7.
 * **Бот (там же поддержка):** [@EverydayVPNNow_bot](https://t.me/EverydayVPNNow_bot)
 * **Наш новостной канал:** [EverydayVPN Channel](https://t.me/EverydayVPN_channel)
+.
