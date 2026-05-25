@@ -201,17 +201,17 @@
     </div>
 
     <p class="lead">
-      Если у вас заблокирован Telegram, не грузятся медиа или «кружочки» — просто нажмите кнопку ниже. Рекомендуем добавить <b>все три сервера</b>: Telegram сам выберет самый быстрый и переключится на резервный при проблемах.
+      Если у вас заблокирован Telegram, не грузятся медиа или «кружочки» — просто нажмите кнопку ниже. Сейчас доступен один актуальный сервер для подключения.
     </p>
 
     <div class="all-card">
       <div>
-        <div class="all-title">Добавить все прокси по шагам</div>
-        <div class="all-sub">Жмите кнопку → в Telegram нажмите «Включить» → вернитесь назад → снова кнопка. И так 3 раза. Надёжно работает и на телефоне, и на ПК.</div>
+        <div class="all-title">Подключить актуальный прокси</div>
+        <div class="all-sub">Жмите кнопку → в Telegram нажмите «Включить». Работает и на телефоне, и на ПК.</div>
       </div>
       <button class="btn primary big" id="addAll">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9.04 15.4l-.36 5.07c.52 0 .74-.22 1.01-.49l2.43-2.33 5.03 3.68c.92.51 1.57.24 1.82-.85L22.93 3.9c.32-1.37-.49-1.9-1.39-1.57L1.46 10.06c-1.33.52-1.31 1.26-.23 1.6l4.97 1.55 11.53-7.27c.54-.35 1.04-.15.63.2z"/></svg>
-        Добавить все 3 прокси
+        Подключить прокси
       </button>
       <div class="step-hint" id="stepHint"><span class="arrow">👉</span><span id="stepHintText"></span></div>
     </div>
@@ -245,23 +245,9 @@
     {
       flag: "🌍",
       name: "Основной",
-      server: "howfreeyouare.ru",
-      port: 993,
-      secret: "ee3ece194e0dd8d4ab38c0b810b3be97c479612e7275"
-    },
-    {
-      flag: "🇩🇪",
-      name: "Запасной",
-      server: "de.howfreeyouare.ru",
-      port: 993,
-      secret: "ee9cf83c412c8e51934d52fbbd275bc43d79612e7275"
-    },
-    {
-      flag: "⚡️",
-      name: "Запасной",
-      server: "howfreeyouare.ru",
-      port: 8888,
-      secret: "ee019586289cf34b85aafe52d3e36bf9c779612e7275"
+      server: "everydaynow.top",
+      port: 443,
+      secret: "eef28a40a207e6157b64bcdf67628a00b07275747562652e7275"
     }
   ];
 
@@ -345,7 +331,7 @@
       addAllBtn.innerHTML = addAllOriginalHTML;
       clearHighlights();
     } else if (queueIndex >= servers.length) {
-      addAllBtn.innerHTML = `✓ Все ${servers.length} прокси добавлены`;
+      addAllBtn.innerHTML = servers.length === 1 ? "✓ Прокси добавлен" : `✓ Все ${servers.length} прокси добавлены`;
       addAllBtn.classList.add("done");
       clearHighlights();
     } else {
